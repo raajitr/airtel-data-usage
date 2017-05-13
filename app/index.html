@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>Timer</title>
+  </head>
+  <body>
+    <div class="header-arrow"></div>
+
+    <div class="container">
+      <div class="quit-div"><a id="quit" href="#" data-balloon="Quit." data-balloon-pos="left">x</a></div>
+      <div class="login-box animated fadeInUp">
+  			<label for="username">User ID/ Moble No.</label>
+  			<br/>
+  			<input type="text" id="username" required>
+  			<br/>
+  			<label for="password">Password</label>
+  			<br/>
+  			<input type="password" id="password" required>
+  			<br/>
+  			<button id="submit-btn" type="submit">Sign In</button>
+  			<br/>
+        <p>OTP login is not supported.</br><span onclick="shell.openExternal('https://www.airtel.in/s/selfcare/')" style="color:blue !important; cursor: pointer">Forgot password</span>.<p>
+  		</div>
+      <div class="spinner" style="display: none;">
+          <div class="dot1"></div>
+          <div class="dot2"></div>
+      </div>
+      <div class="error-mssg" style="display: none;">
+          <h1>Something went wrong!</h1>
+          <ul>Try <span onclick="submit(bootScreen=true)" style="color:blue !important; cursor: pointer">retry</span>ing once</ul>
+          <ul>Try to login on their <span onclick="shell.openExternal('https://www.airtel.in/s/selfcare/')" style="color:blue !important; cursor: pointer">website</span></ul>
+          <ul>Maybe entered incorrect credentials?</br><span onclick="gotoSubmitPage()" style="color:blue !important; cursor: pointer">Resubmit</span></ul>
+      </div>
+      <div class="chart" style="display: none;">
+        <div style="text-indent: 10px;">
+          <p style="margin-bottom:0px"><span id="welcome">Welcome</span></p>
+          <p style="margin-top:0px"><span id="number">9810387878</span></p>
+        </div>
+        <div id="percentage"><h2><span id="inner-text"></span></h2></div>
+        <canvas id="donut-airtel" width="400px" height="270px"></canvas>
+      </div>
+    </div>
+    <div class="footer">
+        <div class="led"></div><div id="conn-status">Checking</div>
+    </div>
+    <script src="index.js" type="text/javascript"></script>
+  </body>
+</html>

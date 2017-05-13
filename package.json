@@ -1,0 +1,21 @@
+{
+  "name": "airtel-data-usage",
+  "version": "0.1.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "./node_modules/.bin/electron .",
+    "build": "electron-packager . AirtelDataUsage --platform=win32 --arch=all --version=1.6.7 --overwrite"
+  },
+  "author": "Raajit Raj",
+  "license": "ISC",
+  "dependencies": {
+    "chart.js": "^2.5.0",
+    "electron": "^1.6.7",
+    "is-online": "^7.0.0",
+    "nightmare": "^2.10.0"
+  },
+  "devDependencies": {
+    "electron-packager": "^8.7.0"
+  }
+}
