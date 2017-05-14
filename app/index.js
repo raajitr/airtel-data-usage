@@ -4,6 +4,11 @@ const {ipcRenderer} = require('electron');
 const {shell} = require('electron')
 const isOnline = require('is-online');
 
+if (process.platform === 'win32'){
+  document.getElementsByClassName('header-arrow')[0].style.display = 'none';
+  document.body.style.margin = 0;
+}
+
 ipcRenderer.on('connection-status', (event, online) => {
   displayStatus(online);
 });

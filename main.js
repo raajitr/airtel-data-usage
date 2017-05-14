@@ -29,6 +29,7 @@ function createWindow() {
     fullscreenable: false,
     resizable: false,
     transparent: true,
+    skipTaskbar: true,
     webPreferences: {
       // Prevents renderer process code from not running when window is
       // hidden
@@ -37,9 +38,6 @@ function createWindow() {
   });
   if (process.platform === 'darwin') {
     app.dock.hide()
-  }
-  else{
-    win.skipTaskbar(true);
   }
 
   // and load the index.html of the app.
@@ -94,9 +92,11 @@ function toggleWindow(){
 function getPosition(){
   let windowBounds = win.getBounds();
   let trayBounds = tray.getBounds();
+  let space = 4;
+  if(process.platform === 'win32') {space = 0};
 
   let x = Math.round(trayBounds.x + (trayBounds.width / 2) - (windowBounds.width / 2));
-  let y = Math.round(trayBounds.y + trayBounds.height + 4);
+  let y = Math.round(trayBounds.y + trayBounds.height + space);
 
   return {x: x, y: y}
 }
