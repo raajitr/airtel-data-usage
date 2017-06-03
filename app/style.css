@@ -2,6 +2,7 @@
 html, body {
     font-family: "Muli", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
 .header-arrow {
   position: absolute;
   top: 2px;
@@ -258,6 +259,24 @@ a[data-balloon] {
 [data-balloon-pos="left"][data-balloon-visible]:after {
   transform: translate(0, -50%);
 }
+
+#github-prof{
+  position: absolute;
+  top: -30%;
+  right: 4%;
+  cursor: pointer;
+}
+
+#timer{
+  text-decoration: none;
+  width: 100%;
+  position: absolute;
+  top: 1%;
+  font-size: 0.7em;
+  color: #b9b6b6;
+  text-align: center;
+}
+
 /*.selected {
 	color: #f30606!important;
 	transition: 0.5s;

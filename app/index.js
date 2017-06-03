@@ -2,8 +2,10 @@
 const Chart = require('chart.js')
 const {ipcRenderer} = require('electron');
 const {shell} = require('electron')
-const isOnline = require('is-online');
+// const isOnline = require('is-online');
+const moment = require('moment')
 
+var currentTime = 'none';
 if (process.platform === 'win32'){
   document.getElementsByClassName('header-arrow')[0].style.display = 'none';
   document.body.style.margin = 0;
@@ -75,6 +77,7 @@ function bootLoading(){
 }
 
 function updateChart(userData){
+  currentTime = moment().format();
   document.querySelector('.chart').style.display = 'block'
   let ctx = document.getElementById('donut-airtel').getContext("2d");
   let config = {
@@ -133,5 +136,12 @@ function updateChart(userData){
   document.getElementById('number').innerText = userData['number'];
 }
 
-const fifteenMinutes = 15 * 60 * 1000;
+const fifteenMinutes = 2 * 60 * 1000;
 setInterval(submit, fifteenMinutes, bootScreen=false);
+setInterval(function(){
+    if (currentTime != 'none'){
+    message = moment(currentTime).fromNow()
+    document.getElementById('timer').innerText = 'Updated '+message;
+    }
+  },
+  1000);
