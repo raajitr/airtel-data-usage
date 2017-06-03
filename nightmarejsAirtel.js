@@ -5,13 +5,16 @@ var resp = {'name': '',
             'consumed': '',
             'avail': '',
             'percentage': ''};
-var i = 0;
-exports.getResponse = (uname, pass) =>
+
+uname = process.argv[2];
+pass = process.argv[3];
+getResponse(uname, pass);
+
+function getResponse(uname, pass){
   nightmare = new Nightmare({ show: false,
   webPreferences: {
     images: false,
   },
-  electronPath: require('./electron')
   })
   .goto('https://www.airtel.in/personal/myaccount/telemedia/?telemediaMsisdn=LH/Ka+KZbLeiH6+3JIWdSw==')
   .wait('#number-one')
@@ -29,12 +32,13 @@ exports.getResponse = (uname, pass) =>
     resp['consumed'] = document.querySelector('#con_quota').innerText;
     resp['avail'] = document.querySelector('#avl_quota').innerText;
     resp['percentage'] = document.querySelector('#total_per').innerText;
-    return resp
+    return JSON.stringify(resp)
   }, resp)
   .end()
   .then(function (result) {
-    return result;
+    console.log(result)
   })
   .catch(function (error, i, uname, pass) {
     console.error('Search failed:', error);
   });
+}
