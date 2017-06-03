@@ -4,7 +4,7 @@ const {app, Tray, Menu, ipcMain} = electron;
 // Module to create native browser window.
 const {BrowserWindow} = electron;
 const path = require('path')
-const fetchData = require('./nightmarejsAirtel');
+// const fetchData = require('./nightmarejsAirtel');
 const isOnline = require('is-online');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -42,8 +42,7 @@ function createWindow() {
 
   // and load the index.html of the app.
   win.loadURL(`file://${__dirname}/app/index.html`);
-  // Open the DevTools.
-  // win.webContents.openDevTools();
+  
   // Emitted when the window is closed.
   win.on('closed', () => {
     // Dereference the window object, usually you would store windows
@@ -59,7 +58,7 @@ function createWindow() {
     }
   })
 
-  // win.openDevTools({mode: 'detach'})
+  win.openDevTools({mode: 'detach'})
 
   // When UI has finish loading
   ipcMain.on('did-finish-load', () => {
@@ -111,11 +110,13 @@ function showWindow(){
 ipcMain.on('get-data', (event, uname, pw) => {
   console.log(uname);
   console.log(pw);
-  var val = fetchData.getResponse(uname, pw);
-  val.then(function (result){
-    console.log(result);
-    event.sender.send('update-data', result);
-    var val = undefined;
+  var exec = require('child_process').spawn;
+  extractorProcess = exec('node', ['nightmarejsAirtel.js', uname, pw]);
+  // extractorProcess.on()
+  extractorProcess.stdout.setEncoding('utf8');
+  extractorProcess.stdout.on('data', function (data) {
+    console.log(data);
+    event.sender.send('update-data', JSON.parse(data));
   });
 });
 
